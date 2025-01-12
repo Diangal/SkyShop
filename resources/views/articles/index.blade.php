@@ -1,5 +1,5 @@
 @extends('layouts.admin_dashboard')
-   
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -61,10 +61,10 @@
                                     <a class="nav-link" href="{{ route('articles.create') }}">Ajouter</a>
                                 </nav>
                             </div>
-                            
-                            
+
+
                             <div class="sb-sidenav-menu-heading">Transactions</div>
-                            
+
                             <a class="nav-link" href="tables.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Paiements
@@ -80,7 +80,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     {{-- @yield('content') --}}
-                                                                
+
                         <div class="px-4 container-fluid">
                             <h1 class="mt-4">Mes Articles</h1>
                             <ol class="mb-4 breadcrumb">
@@ -89,7 +89,7 @@
                                     @if(session('success'))
                                     <p style="color: green;">{{ session('success') }}</p>
                                     @endif
-                           
+
                             <div class="mb-4 card">
                                 <div class="card-header" style="display: flex; justify-content: flex-end">
                                <a href="{{ route('articles.create') }}" class="btn btn-primaary">Ajouter un produit</a>
@@ -118,7 +118,7 @@
                                                 <th>Salary</th>
                                             </tr>
                                         </tfoot> --}}
-                                        <tbody> 
+                                        <tbody>
                                             @foreach($articles as $article)
                                                 <tr>
                                                     <td>{{ $article->id }}</td>

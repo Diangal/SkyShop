@@ -21,7 +21,7 @@
                             <div class="mb-5 col">
                                 <div class="card h-100">
                                     <!-- Product image-->
-                                     <p>{{ $article->active }}</p>
+                                     <p></p>
                                             @if($article->image)
                                                 <img src="{{ asset('storage/' . $article->image) }}" alt="Image" width="100%" height="100%">
                                             @else
@@ -38,25 +38,14 @@
                                            Prix : {{number_format($article->prix, 0, ',', ' ')}} Fcfa
                                         </div>
                                     </div>
-                                    <form action="" method="POST">
-                                        {{ csrf_field() }}
-                                        <input type="hidden" name="product_id" value="{{ $article->id }}">
-
-                                        <select name="payment_method" class="w-full p-2 mb-4 border rounded">
-                                            <option value="ORANGE_MONEY">Orange Money</option>
-                                            <option value="MOMO">MTN MoMo</option>
-                                            <option value="CREDIT_CARD">Carte bancaire</option>
-                                            <option value="PAYCARD">Paycard</option>
-                                        </select>
-                                            <!-- Product actions-->
-
-                                            <div class="p-4 pt-0 bg-transparent card-footer border-top-0">
-                                                <button type="submit" class="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
-                                                    Payer maintenant
-                                                </button>
-                                            </div>
-
+                                    
+                                    <form method="POST" action="{{route('paiement')}}">
+                                        @csrf
+                                        <input type="hidden" name="article_id" value="{{ $article->id }}">
+                                        <!-- autres champs -->
+                                        <button type="submit">Payer</button>
                                     </form>
+                                    
 
                                 </div>
                             </div>

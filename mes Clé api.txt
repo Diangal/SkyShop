@@ -1,0 +1,9 @@
+Clé api
+944f0e779d81570154313e59c3576d05d229d2e25abee84ea472faa5052d4e57
+Clé secrète
+39f52a38bbd56c1e2954ef45e45764da35ba26bbd4abf0d4aca901ea947351db
+URL de notification instantanée de paiement (IPN)
+
+URL de redirection en cas de succès
+
+URL de redirection en cas d'annulation

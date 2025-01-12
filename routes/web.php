@@ -6,10 +6,18 @@ use App\Http\Controllers\CategorieController;
 
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaiementPaytechController;
+use App\Http\Controllers\PanierController;
+use App\Http\Controllers\PayDunyaController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebsiteController;
 use App\Models\Article;
 use Illuminate\Support\Facades\Route;
+
+
+
+
 
 
 
@@ -26,6 +34,33 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+
+
+Route::post('/paiement',[PaiementPaytechController::class, 'paiement'])->name('paiement');
+Route::get('/success',[PaiementPaytechController::class, 'success'])->name('success');
+Route::get('/cancel',[PaiementPaytechController::class, 'cancel'])->name('cancel');
+
+
+// // Afficher les articles
+// Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+
+// Ajouter un article au panier
+Route::get('/panier/add', [PanierController::class, 'add'])->name('panier_add');
+Route::get('/panier', [PanierController::class, 'index'])->name('panier_index');
+
+// // Afficher le panier
+// Route::get('/panier', [PanierController::class, 'voir'])->name('panier.voir');
+// // Passer à la page de paiement
+// Route::post('/panier/paiement', [PanierController::class, 'paiement'])->name('panier.paiement');
+
+// Route::get('/cart', [PayDunyaController::class, 'cart'])->name('cart.index');
+// Route::post('/pay', [PayDunyaController::class, 'initiatePayment'])->name('pay.initiate');
+// Route::get('/payment/callback', [PayDunyaController::class, 'paymentCallback'])->name('pay.callback');
+
+
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 

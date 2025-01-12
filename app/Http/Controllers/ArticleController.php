@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-
-
 class ArticleController extends Controller
 {
-    public function affichage() { 
+    public function affichage()
+    {
 
         $articles = Article::with('categorie')->paginate(10);
 
@@ -22,26 +20,26 @@ class ArticleController extends Controller
 
     public function index()
     {
-    // // Récupérer les catégories
-    // $categories = Categorie::all();
-    //$categories= articles()->where('id', '>', '10');
-    // Categorie::create([
-    //     'nom_categorie'  => 'categorie A'
-    // ]);
-    // Categorie::create([
-    //     'nom_categorie'  => 'categorie B'
-    // ]);
-    // Categorie::create([
-    //     'nom_categorie'  => 'categorie C'
-    // ]);
-    // Categorie::create([
-    //     'nom_categorie'  => 'categorie D'
-    // ]);
-  
-    // Charger les articles avec leurs catégories
-    $articles = Article::with('categorie')->paginate(10);
-    
-    return view('articles.index', compact('articles'));
+        // // Récupérer les catégories
+        // $categories = Categorie::all();
+        //$categories= articles()->where('id', '>', '10');
+        // Categorie::create([
+        //     'nom_categorie'  => 'categorie A'
+        // ]);
+        // Categorie::create([
+        //     'nom_categorie'  => 'categorie B'
+        // ]);
+        // Categorie::create([
+        //     'nom_categorie'  => 'categorie C'
+        // ]);
+        // Categorie::create([
+        //     'nom_categorie'  => 'categorie D'
+        // ]);
+
+        // Charger les articles avec leurs catégories
+        $articles = Article::with('categorie')->paginate(10);
+
+        return view('articles.index', compact('articles'));
     }
 
     // public function show(Article $article)
@@ -50,33 +48,28 @@ class ArticleController extends Controller
     // //Si l'article n'existe pas (ex. si l'ID fourni n'est pas valide), Laravel retournera automatiquement une erreur 404.
     // return view('articles.show', compact('article'));
     // }
-    
+
     //Si vous voulez gérer une redirection personnalisée (optionnel) : Si vous préférez rediriger au lieu d'une erreur 404
     public function show($id)
     {
-    // Trouver l'article par son ID, incluant sa catégorie grâce à la relation
-    $article = Article::with('categorie')->find($id);
+        // Trouver l'article par son ID, incluant sa catégorie grâce à la relation
+        $article = Article::with('categorie')->find($id);
 
-    // Si l'article n'existe pas, rediriger avec un message d'erreur
-    if (!$article) {
-        return redirect()->route('articles.index')->with('error', 'Article non trouvé');
+        // Si l'article n'existe pas, rediriger avec un message d'erreur
+        if (! $article) {
+            return redirect()->route('articles.index')->with('error', 'Article non trouvé');
+        }
+
+        // Retourner la vue avec l'article trouvé
+        return view('articles.show', compact('article'));
     }
-
-    // Retourner la vue avec l'article trouvé
-    return view('articles.show', compact('article'));
-    }
-
-
-    
 
     public function create()
     {
-    $categories = Categorie::all();
-    return view('articles.create', compact('categories'));
+        $categories = Categorie::all();
+
+        return view('articles.create', compact('categories'));
     }
-
-
- 
 
     // public function store(ArticleRequest $request)
     // {
@@ -118,40 +111,45 @@ class ArticleController extends Controller
             'categorie_id' => $request->categorie_id,
             'image' => $imagePath,
         ]);
-            // dd();
+
+        // dd();
         // Redirection avec message de succès
         return redirect()->back()->with('success', 'Article ajouté avec succès!');
     }
-    
+
     public function edit(Article $article)
     {
         $categories = Categorie::all();
+
         return view('articles.edit', compact('article', 'categories'));
     }
 
     public function update(ArticleRequest $request, Article $article)
     {
         try {
-         
-        $article->update($this->extractData($article, $request));
+
+            $article->update($this->extractData($article, $request));
+
             return redirect()->route('articles.index')->with('success', 'Article mis à jour avec succès.');
         } catch (\Exception $e) {
             return back()->with('error', 'Une erreur s\'est produite lors de la mise à jour de l\'article.');
         }
     }
+
     private function extractData(Article $article, ArticleRequest $request): array
     {
         $data = $request->validated();
         /** @var UploadedFile|null $image */
         $image = $request->validated('image');
-        if($image===null || $image->getError()){
+        if ($image === null || $image->getError()) {
             return $data;
         }
-        if($article->image){
+        if ($article->image) {
             Storage::disk('public')->delete($article->image);
 
-        }        
-         $data['image']= $image->store('articles', 'public');
+        }
+        $data['image'] = $image->store('articles', 'public');
+
         return $data;
     }
 
@@ -159,12 +157,10 @@ class ArticleController extends Controller
     {
         try {
             $article->delete();
+
             return redirect()->route('articles.index')->with('success', 'Article supprimé avec succès.');
         } catch (\Exception $e) {
             return back()->with('error', 'Une erreur s\'est produite lors de la suppression de l\'article.');
         }
     }
-
-
 }
- 
