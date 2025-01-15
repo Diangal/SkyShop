@@ -22,13 +22,8 @@
                                 <div class="card h-100">
                                     <!-- Product image-->
                                      <p></p>
-                                        <img src="article/proFar.png" alt="Produit">
-                                            @if($article->image)
-                                                <img src="{{ asset('storage/' . $article->image) }}" alt="Image" width="100%" height="100%">
-                                            @else
-                                                    <img src="{{ asset('images/logo.png') }}" alt="Logo" width="100%" height="100%">
-
-                                            @endif
+                                        <img src="/article/proFar.png" alt="Produit">
+                                            
                                     {{-- <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /> --}}
                                     <!-- Product details-->
                                     <div class="p-4 card-body">
