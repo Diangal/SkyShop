@@ -22,7 +22,7 @@
                                 <div class="card h-100">
                                     <!-- Product image-->
                                      <p></p>
-                                        <img src="/article/proFar.png" alt="Produit">
+                                        <img src="/articles/proFar.png" alt="Produit">
                                             
                                     {{-- <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /> --}}
                                     <!-- Product details-->
