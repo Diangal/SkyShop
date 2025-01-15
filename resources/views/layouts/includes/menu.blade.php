@@ -6,17 +6,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="mb-2 navbar-nav me-auto mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">+++++</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">-----</a></li>
-                                <li><a class="dropdown-item" href="#!">******</a></li>
-                            </ul>
-                        </li>
+                       
                     </ul>
                     <form class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">
